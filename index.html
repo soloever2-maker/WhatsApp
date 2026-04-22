@@ -7,22 +7,22 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0d1117;
-  --surface: #161b22;
-  --surface2: #1c2330;
-  --border: rgba(255,255,255,0.08);
+  --bg: #f3f4f6;
+  --surface: #ffffff;
+  --surface2: #f9fafb;
+  --border: #e5e7eb;
   --gold: #d4af37;
-  --gold-dim: rgba(212,175,55,0.15);
-  --gold-border: rgba(212,175,55,0.3);
-  --text: #e6edf3;
-  --muted: #7d8590;
-  --green: #3fb950;
-  --green-dim: rgba(63,185,80,0.12);
-  --blue: #58a6ff;
-  --blue-dim: rgba(88,166,255,0.12);
-  --red: #f85149;
-  --amber: #f0883e;
-  --purple: #a371f7;
+  --gold-dim: rgba(212,175,55,0.1);
+  --gold-border: rgba(212,175,55,0.4);
+  --text: #111827;
+  --muted: #6b7280;
+  --green: #16a34a;
+  --green-dim: rgba(22,163,74,0.1);
+  --blue: #2563eb;
+  --blue-dim: rgba(37,99,235,0.1);
+  --red: #dc2626;
+  --amber: #d97706;
+  --purple: #9333ea;
   --radius: 10px;
   --radius-lg: 14px;
 }
@@ -85,7 +85,7 @@ body {
 /* ── LAYOUT ── */
 .layout {
   display: grid;
-  grid-template-columns: 260px 1fr; /* Removed the 3rd column for AI panel */
+  grid-template-columns: 260px 1fr;
   height: calc(100vh - 57px);
 }
 
@@ -108,7 +108,7 @@ body {
 .search-box {
   width: 100%;
   padding: 8px 12px;
-  background: var(--surface2);
+  background: #fff;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   color: var(--text);
@@ -118,8 +118,8 @@ body {
   margin-bottom: 14px;
   transition: border .2s;
 }
-.search-box:focus { border-color: var(--gold-border); }
-.search-box::placeholder { color: var(--muted); }
+.search-box:focus { border-color: var(--gold); box-shadow: 0 0 0 2px var(--gold-dim); }
+.search-box::placeholder { color: #9ca3af; }
 
 .cat-group { margin-bottom: 6px; }
 .cat-header {
@@ -151,12 +151,12 @@ body {
   border-radius: var(--radius);
   cursor: pointer;
   font-size: 12px;
-  color: var(--muted);
+  color: var(--text);
   transition: all .15s;
   line-height: 1.3;
 }
-.script-item:hover { background: var(--surface2); color: var(--text); }
-.script-item.active { background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold-border); }
+.script-item:hover { background: var(--surface2); color: var(--gold); }
+.script-item.active { background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold-border); font-weight: 600; }
 
 /* ── MAIN CONTENT ── */
 .main {
@@ -173,6 +173,7 @@ body {
   border-radius: var(--radius-lg);
   overflow: hidden;
   display: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 .script-card.visible { display: block; }
 
@@ -183,6 +184,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  background: #fafbfc;
 }
 .card-meta { display: flex; align-items: center; gap: 10px; }
 .cat-badge {
@@ -218,7 +220,7 @@ body {
   line-height: 1.75;
   color: var(--text);
   white-space: pre-wrap;
-  background: var(--surface2);
+  background: #ffffff;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 14px 16px;
@@ -236,8 +238,8 @@ body {
   padding: 8px 14px;
   border-radius: var(--radius);
   border: 1px solid var(--border);
-  background: var(--surface2);
-  color: var(--muted);
+  background: #fff;
+  color: var(--text);
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
@@ -247,15 +249,16 @@ body {
   align-items: center;
   justify-content: center;
   gap: 6px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 .copy-btn:hover { border-color: var(--gold-border); color: var(--gold); background: var(--gold-dim); }
-.copy-btn.copied { background: var(--green-dim); border-color: rgba(63,185,80,0.3); color: var(--green); }
+.copy-btn.copied { background: var(--green-dim); border-color: rgba(22,163,74,0.3); color: var(--green); }
 .copy-btn.copy-both {
-  background: var(--gold-dim);
-  border-color: var(--gold-border);
-  color: var(--gold);
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #000;
 }
-.copy-btn.copy-both:hover { background: var(--gold); color: #000; }
+.copy-btn.copy-both:hover { background: #bfa032; border-color: #bfa032; }
 
 /* Footer area inside card for both copy */
 .card-footer {
@@ -263,6 +266,7 @@ body {
   border-top: 1px solid var(--border);
   display: flex;
   justify-content: flex-end;
+  background: #fafbfc;
 }
 
 .empty-state {
@@ -279,23 +283,23 @@ body {
 .empty-icon { font-size: 32px; opacity: .4; }
 
 /* Category colors */
-.c-opening  { background:rgba(63,185,80,0.15); color:#3fb950; }
-.c-contracts{ background:rgba(88,166,255,0.15); color:#58a6ff; }
-.c-payments { background:rgba(240,136,62,0.15); color:#f0883e; }
-.c-visits   { background:rgba(163,113,247,0.15); color:#a371f7; }
-.c-unitinfo { background:rgba(212,175,55,0.15); color:#d4af37; }
-.c-escalation{background:rgba(248,81,73,0.15);  color:#f85149; }
-.c-closing  { background:rgba(125,133,144,0.15);color:#7d8590; }
-.c-projects { background:rgba(56,189,248,0.15); color:#38bdf8; }
+.c-opening  { background:rgba(22,163,74,0.1); color:#16a34a; }
+.c-contracts{ background:rgba(37,99,235,0.1); color:#2563eb; }
+.c-payments { background:rgba(217,119,6,0.1); color:#d97706; }
+.c-visits   { background:rgba(147,51,234,0.1); color:#9333ea; }
+.c-unitinfo { background:rgba(212,175,55,0.1); color:#d4af37; }
+.c-escalation{background:rgba(220,38,38,0.1);  color:#dc2626; }
+.c-closing  { background:rgba(107,114,128,0.1);color:#4b5563; }
+.c-projects { background:rgba(14,165,233,0.1); color:#0ea5e9; }
 
-.dot-opening   { background:#3fb950; }
-.dot-contracts { background:#58a6ff; }
-.dot-payments  { background:#f0883e; }
-.dot-visits    { background:#a371f7; }
+.dot-opening   { background:#16a34a; }
+.dot-contracts { background:#2563eb; }
+.dot-payments  { background:#d97706; }
+.dot-visits    { background:#9333ea; }
 .dot-unitinfo  { background:#d4af37; }
-.dot-escalation{ background:#f85149; }
-.dot-closing   { background:#7d8590; }
-.dot-projects  { background:#38bdf8; }
+.dot-escalation{ background:#dc2626; }
+.dot-closing   { background:#6b7280; }
+.dot-projects  { background:#0ea5e9; }
 
 /* No results */
 .no-results {
@@ -923,7 +927,7 @@ function buildCards() {
       </div>
       <div class="script-body" id="body-${s.id}">
         <div class="script-col" id="col-en-${s.id}">
-          <div class="col-lang"><span style="background:#58a6ff;"></span> English</div>
+          <div class="col-lang"><span style="background:#2563eb;"></span> English</div>
           <div class="script-text" id="text-en-${s.id}">${s.en}</div>
           <div class="copy-row">
             <button class="copy-btn" id="copybtn-en-${s.id}" onclick="copyScript('${s.id}','en')">📋 Copy EN</button>
